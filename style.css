@@ -1,12 +1,15 @@
 body{
     margin:auto;
-    max-width: 700px;
+    max-width: 1000px;
     padding:20px;
     min-height: 100vh;;
     background-color: #031219;
     background-image: radial-gradient(
                         ellipse 100% 100% at 50% 0%, #7877c64d, #fff0);
     font-family:Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -24,9 +27,9 @@ body{
     flex-wrap: nowrap;
     justify-content: space-evenly;
     align-items: center;
-    animation-name:menu_animation;
-    animation-timing-function: linear;
+    animation:menu_animation linear both;
     animation-timeline: scroll(root block);
+    animation-range:0 100px;
     padding:0 10px;
     height: 40px;
     border-radius: 30px;
@@ -34,11 +37,9 @@ body{
 }
 
 @keyframes menu_animation{
-    15%{
-        background-color: #275f6ddf;
-    }
-    100%{
-        background-color: #275f6ddf;
+    to{
+        background: #275f6daa;
+        backdrop-filter: blur(5px);
     }
 }
 
@@ -72,10 +73,6 @@ main{
 }
 
 
-
-
-
-
 .presentation{
     display: flex;
     flex-direction: column;
@@ -89,7 +86,7 @@ main{
     direction: ltr;
     align-items: center;
     gap:10px;
-    max-width: 700px;
+    max-width: 1000px;
 }
 
 #self{
@@ -109,11 +106,11 @@ h1{
     margin:0
 }
 
-@media (width < 760px){
+@media (max-width:900px){
     main{
         margin:auto;
         margin-top: 70px;
-        width: 350px;  
+        width: 400px;  
     }
 }
 
@@ -165,17 +162,15 @@ strong{
     display:flex;
     flex-direction: column;
     direction: ltr;
-    gap:50px;
+    gap:30px;
     align-items: flex-start;
     flex-wrap: nowrap;
-    align-self: flex-start;
 }
 
 h2{
     width:max-content;
     font-size: 35px;
     color:#ffffff;
-    margin:20px 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -202,11 +197,10 @@ h2{
 .img_container{
     border: solid 1px #444;
     position:relative;
-    width:350px;
-    height: 225px;
+    width:400px;
+    height: 250px;
     border-radius: 15px;
     background: radial-gradient(#172b59,#021b27);
-    
     overflow: clip;
 }
 .project__image{
@@ -227,7 +221,7 @@ h2{
     justify-content: space-between;
     gap:5px;
     align-items: flex-start;
-    width: 325px;
+    width: 400px;
     min-width: 250px;
     
 }
@@ -274,6 +268,24 @@ h3{
     gap:10px;
 }
 
+.img_container, .project__info{
+    animation:reveal linear both;
+    animation-timeline: view();
+    animation-range:entry 20% cover 30%;
+}
+
+@keyframes reveal {
+    from{
+        opacity:0;
+        scale:0.9;
+    }
+    to{
+        opacity:1;
+        scale:1;
+    }
+    
+}
+
 /**/
 
 .about_me{
@@ -284,17 +296,22 @@ h3{
     align-items: center;
     justify-content: flex-start;
     gap:20px;
-    width:700px;
+    animation:reveal linear both;
+    animation-timeline: view();
+    animation-range:entry 10% cover 20%;
+    margin-bottom: 100px;
 }
 
-@media (width < 760px){
+@media (width < 900px){
     .about_me{
         margin: auto;
         margin-top: 70px;
-        width: 350px; 
+        width: 400px; 
         justify-content: center; 
     }
 }
+
+
 
 .text{
     display: flex;
@@ -303,7 +320,6 @@ h3{
 }
 
 .about_description{
-    max-width:450px;
     margin:10px 0;
     overflow: auto;
 }
@@ -322,6 +338,15 @@ h3{
     object-fit: contain;
     border-radius: 5px;
 }
+
+@media (min-device-width:501px){
+    .about_description{
+        max-width: 450px;
+    }
+}
+
+
+/**/
 
 .dot{
     height: 15px;
@@ -397,4 +422,114 @@ h3{
     100%{
         transform: translateY(0px);
     }
+}
+
+@media (max-device-width:500px){
+    .menu{
+        padding: 10px 15px;
+    }
+    .menu__item{
+        font-size: 25px;
+    }
+
+    main{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .presentation{
+        width: 80%;
+    }
+
+    h1{
+        font-size: 60px;
+    }
+
+    .presentation__info{
+        font-size: 35px;
+        width: 100%;
+    }
+
+    #self{
+        width: 150px;
+        height: 150px;
+    }
+
+    .link{
+        font-size: 30px;
+    }
+
+    .ico{
+        height: 30px;
+        width: 30px;
+    }
+
+    h2{
+        align-self: flex-start;
+    }
+
+    .projects{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap:50px
+    }
+
+    .projects__item{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap:30px
+    }
+
+    .img_container{
+        aspect-ratio: 3/2;
+        width: 100%;
+        height: auto;
+    }
+
+    .project__info{
+        width: 100%;
+        gap:20px
+    }
+
+    h3{
+        width: 100%;
+    }
+
+    .tech{
+        font-size: 25px;
+        gap:10px
+    }
+
+    .about_me{
+        width: 80%;
+        flex-direction: column;
+        align-items: center;
+        gap:50px
+    }
+    .text{
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .parragraphs{
+        width: 100%;
+    }
+
+    .about_description{
+        font-size: 30px;
+        width: 100%;
+    }
+
+    .self_container{
+        height: 300px;
+        width: 300px;
+    }
+    
 }

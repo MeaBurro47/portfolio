@@ -39,6 +39,8 @@ body{
     animation-name:menu_animation;
     animation-timing-function: linear;
     animation-timeline: scroll(root block);
+    animation-fill-mode: both;
+    animation-range:0 100px;
     padding:0 10px;
     height: 40px;
     border-radius: 30px;
@@ -46,12 +48,10 @@ body{
 }
 
 @keyframes menu_animation{
-    15%{
-        background-color: #b8b8b8df;
-        
-    }
-    100%{
-        background-color: #b8b8b8;
+    
+    to{
+        background: #b8b8b8cc;
+        backdrop-filter: blur(5px);
     }
 }
 
